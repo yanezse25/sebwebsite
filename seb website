@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,128 +12,83 @@
             font-family: 'Press Start 2P', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #111827;
-            /* Dark background */
-            color: #f9fafb;
-            /* Light text */
+            background-color: #111827; /* Dark background */
+            color: #f9fafb; /* Light text */
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: flex-start;
             min-height: 100vh;
         }
-
         .container {
             width: 95%;
-            max-width: 1200px;
-            /* Increased max-width for larger screens */
+            max-width: 1200px; /* Increased max-width for larger screens */
             margin-top: 2rem;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
-
         h1 {
-            font-size: 2.25rem;
-            /* Larger heading */
+            font-size: 2.25rem; /* Larger heading */
             margin-bottom: 1.5rem;
-            color: #6366f1;
-            /* Vibrant purple */
-            text-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);
-            /* Deeper text shadow */
+            color: #6366f1; /* Vibrant purple */
+            text-shadow: 0 3px 6px rgba(0, 0, 0, 0.4); /* Deeper text shadow */
         }
-
         #translator-container {
-            background-color: #1f2937;
-            /* Darker container */
-            padding: 2rem;
-            /* Increased padding */
-            border-radius: 0.75rem;
-            /* More rounded corners */
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6), 0 8px 10px -6px rgba(0, 0, 0, 0.4);
-            /* Enhanced shadow */
+            background-color: #1f2937; /* Darker container */
+            padding: 2rem; /* Increased padding */
+            border-radius: 0.75rem; /* More rounded corners */
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6), 0 8px 10px -6px rgba(0, 0, 0, 0.4); /* Enhanced shadow */
             margin-bottom: 2rem;
             width: 100%;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            /* Center content within the container */
+            align-items: center; /* Center content within the container */
             gap: 1.5rem;
         }
-
         .input-group {
             display: flex;
             flex-direction: column;
-            align-items: flex-start;
-            /* Align items to the start of the container */
-            margin-bottom: 0;
-            /* Removed default margin-bottom */
+            align-items: flex-start; /* Align items to the start of the container */
+            margin-bottom: 0; /* Removed default margin-bottom */
             width: 100%;
         }
-
         .input-group label {
             margin-bottom: 0.5rem;
             font-weight: 600;
             color: #d1d5db;
-            font-size: 1rem;
-            /* Increased font size */
+            font-size: 1rem; /* Increased font size */
         }
-
-        .input-group input,
-        .input-group textarea,
-        .input-group select {
-            /* Added select */
-            padding: 0.8rem;
-            /* Increased padding */
-            border-radius: 0.5rem;
-            /* More rounded corners */
-            border: 2px solid #4b5563;
-            /* Darker border */
-            background-color: #374151;
-            /* Slightly lighter input background */
+        .input-group input, .input-group textarea, .input-group select { /* Added select */
+            padding: 0.8rem; /* Increased padding */
+            border-radius: 0.5rem; /* More rounded corners */
+            border: 2px solid #4b5563; /* Darker border */
+            background-color: #374151; /* Slightly lighter input background */
             color: #f9fafb;
-            font-size: 1rem;
-            /* Increased font size */
-            width: calc(100% - 2rem);
-            /* Adjusted width for padding and border */
-            max-width: 400px;
-            /* Added max-width for input fields */
-            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
-            /* Inner shadow for depth */
+            font-size: 1rem; /* Increased font size */
+            width: calc(100% - 2rem); /* Adjusted width for padding and border */
+            max-width: 400px; /* Added max-width for input fields */
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3); /* Inner shadow for depth */
         }
-
-        .input-group input:focus,
-        .input-group textarea:focus,
-        .input-group select:focus {
-            /* Added select */
+        .input-group input:focus, .input-group textarea:focus, .input-group select:focus { /* Added select */
             outline: none;
-            border-color: #6366f1;
-            /* Highlight on focus */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
-            /* Added shadow on focus */
+            border-color: #6366f1; /* Highlight on focus */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4); /* Added shadow on focus */
         }
-
         textarea {
             resize: none;
-            height: 8rem;
-            /* Increased height for textarea */
+            height: 8rem; /* Increased height for textarea */
         }
-
         #output {
             padding: 1rem;
             border-radius: 0.5rem;
-            background-color: #4b5563;
-            /* Darker output background */
+            background-color: #4b5563; /* Darker output background */
             color: #ffffff;
             font-size: 1rem;
-            width: calc(100% - 2rem);
-            /* Adjusted width for padding */
-            margin-top: 1.5rem;
-            /* Increased margin-top */
-            border: 2px solid #6b7280;
-            /* Darker border */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
-            /* Added shadow to output */
+            width: calc(100% - 2rem); /* Adjusted width for padding */
+            margin-top: 1.5rem; /* Increased margin-top */
+            border: 2px solid #6b7280; /* Darker border */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4); /* Added shadow to output */
             word-wrap: break-word;
             white-space: pre-wrap;
         }
@@ -144,96 +98,70 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-top: 2rem;
-            /* Increased margin-top */
+            margin-top: 2rem; /* Increased margin-top */
         }
 
         #games-container h2 {
-            font-size: 2rem;
-            /* Increased heading size */
-            margin-bottom: 1.5rem;
-            /* Increased margin-bottom */
+            font-size: 2rem; /* Increased heading size */
+            margin-bottom: 1.5rem; /* Increased margin-bottom */
             color: #6366f1;
-            text-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);
-            /* Deeper text shadow */
+            text-shadow: 0 3px 6px rgba(0, 0, 0, 0.4); /* Deeper text shadow */
             width: 100%;
-            text-align: center;
-            /* Center the heading */
+            text-align: center; /* Center the heading */
         }
 
         .game-card {
-            background-color: #1f2937;
-            /* Darker game card background */
-            padding: 1.5rem;
-            /* Increased padding */
-            border-radius: 0.75rem;
-            /* More rounded corners */
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6), 0 8px 10px -6px rgba(0, 0, 0, 0.4);
-            /* Enhanced shadow */
-            margin-bottom: 1.5rem;
-            /* Increased margin-bottom */
+            background-color: #1f2937; /* Darker game card background */
+            padding: 1.5rem; /* Increased padding */
+            border-radius: 0.75rem; /* More rounded corners */
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6), 0 8px 10px -6px rgba(0, 0, 0, 0.4); /* Enhanced shadow */
+            margin-bottom: 1.5rem; /* Increased margin-bottom */
             width: 100%;
-            max-width: 400px;
-            /* Added max-width for game cards */
+            max-width: 400px; /* Added max-width for game cards */
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            /* Smooth transition */
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
         }
 
         .game-card:hover {
-            transform: translateY(-0.5rem) scale(1.02);
-            /* Slight lift and scale on hover */
-            box-shadow: 0 12px 30px -5px rgba(0, 0, 0, 0.7), 0 10px 12px -8px rgba(0, 0, 0, 0.5);
-            /* Increased shadow on hover */
+            transform: translateY(-0.5rem) scale(1.02); /* Slight lift and scale on hover */
+            box-shadow: 0 12px 30px -5px rgba(0, 0, 0, 0.7), 0 10px 12px -8px rgba(0, 0, 0, 0.5); /* Increased shadow on hover */
         }
 
         .game-card h3 {
-            font-size: 1.25rem;
-            /* Increased heading size */
+            font-size: 1.25rem; /* Increased heading size */
             margin-bottom: 1rem;
             color: #f9fafb;
         }
-
-        .game-card p {
-            color: #d1d5db;
-            margin-bottom: 1rem;
+        .game-card p{
+           color: #d1d5db;
+           margin-bottom: 1rem;
         }
 
         .game-card button {
-            padding: 0.8rem 1.6rem;
-            /* Increased padding */
-            border-radius: 0.5rem;
-            /* More rounded corners */
+            padding: 0.8rem 1.6rem; /* Increased padding */
+            border-radius: 0.5rem; /* More rounded corners */
             background-color: #6366f1;
             color: #f9fafb;
-            font-size: 1rem;
-            /* Increased font size */
+            font-size: 1rem; /* Increased font size */
             cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-            /* Added box-shadow transition */
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; /* Added box-shadow transition */
             border: none;
-            box-shadow: 0 6px 10px -3px rgba(0, 0, 0, 0.5);
-            /* Add shadow */
+            box-shadow: 0 6px 10px -3px rgba(0, 0, 0, 0.5); /* Add shadow */
         }
 
         .game-card button:hover {
-            background-color: #4c51bf;
-            /* Darker purple on hover */
-            transform: translateY(-0.25rem) scale(1.05);
-            /* Slight lift and scale on hover */
-            box-shadow: 0 8px 12px -3px rgba(0, 0, 0, 0.6);
-            /* Increased shadow on hover*/
+            background-color: #4c51bf; /* Darker purple on hover */
+            transform: translateY(-0.25rem) scale(1.05); /* Slight lift and scale on hover */
+            box-shadow: 0 8px 12px -3px rgba(0, 0, 0, 0.6); /* Increased shadow on hover*/
         }
 
         .game-card button:active {
-            background-color: #4338ca;
-            /* Even darker purple on active */
+            background-color: #4338ca; /* Even darker purple on active */
             transform: translateY(0);
-            box-shadow: 0 3px 4px rgba(0, 0, 0, 0.5);
-            /* Smaller shadow on active */
+            box-shadow: 0 3px 4px rgba(0, 0, 0, 0.5); /* Smaller shadow on active */
         }
 
         #feedback {
@@ -253,20 +181,15 @@
             .container {
                 width: 95%;
             }
-
             #translator-container {
                 padding: 1.5rem;
             }
-
-            .input-group input,
-            .input-group textarea {
+            .input-group input, .input-group textarea {
                 width: calc(100% - 1.5rem);
             }
-
             #output {
                 width: calc(100% - 1.5rem);
             }
-
             .game-card {
                 padding: 1rem;
             }
@@ -276,43 +199,33 @@
             h1 {
                 font-size: 2rem;
             }
-
             .input-group label {
                 font-size: 0.9rem;
             }
-
-            .input-group input,
-            .input-group textarea,
-            .input-group select {
+            .input-group input, .input-group textarea, .input-group select {
                 font-size: 0.9rem;
                 padding: 0.7rem;
             }
-
             #output {
                 font-size: 0.9rem;
                 padding: 0.7rem;
             }
-
             .game-card h3 {
                 font-size: 1.1rem;
             }
-
-            .game-card p {
+            .game-card p{
                 font-size: 0.85rem;
             }
-
             .game-card button {
                 font-size: 0.9rem;
                 padding: 0.7rem 1.4rem;
             }
-
-            #games-container h2 {
+            #games-container h2{
                 font-size: 1.75rem;
             }
         }
     </style>
 </head>
-
 <body class="bg-gray-900 text-gray-50">
     <div class="container">
         <h1>Number & Language Translator</h1>
@@ -320,14 +233,12 @@
         <div id="translator-container" class="bg-gray-800 rounded-lg shadow-md p-6">
             <div class="input-group">
                 <label for="input">Enter number:</label>
-                <input type="text" id="input" placeholder="Enter number to translate..."
-                    class="bg-gray-700 rounded-md border-gray-600 focus:ring-2 focus:ring-purple-500">
+                <input type="text" id="input" placeholder="Enter number to translate..." class="bg-gray-700 rounded-md border-gray-600 focus:ring-2 focus:ring-purple-500">
             </div>
 
             <div class="input-group">
                 <label for="language">Select Target Language:</label>
-                <select id="language"
-                    class="bg-gray-700 rounded-md border-gray-600 focus:ring-2 focus:ring-purple-500">
+                <select id="language" class="bg-gray-700 rounded-md border-gray-600 focus:ring-2 focus:ring-purple-500">
                     <option value="es">Spanish</option>
                     <option value="fr">French</option>
                     <option value="de">German</option>
@@ -341,10 +252,8 @@
             </div>
 
             <div class="button-group flex justify-center gap-4 mt-6">
-                <button id="translate-button"
-                    class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Translate</button>
-                <button id="clear-button"
-                    class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Clear</button>
+                <button id="translate-button" class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Translate</button>
+                <button id="clear-button" class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Clear</button>
             </div>
         </div>
 
@@ -353,29 +262,22 @@
             <div class="game-card bg-gray-800 rounded-lg shadow-md">
                 <h3>Number Guessing Game</h3>
                 <p>Guess the number between 1 and 100:</p>
-                <input type="number" id="guess-input" placeholder="Your guess"
-                    class="bg-gray-700 rounded-md border-gray-600 focus:ring-2 focus:ring-purple-500 w-3/4 max-w-sm mb-4">
+                <input type="number" id="guess-input" placeholder="Your guess" class="bg-gray-700 rounded-md border-gray-600 focus:ring-2 focus:ring-purple-500 w-3/4 max-w-sm mb-4">
                 <div id="guess-feedback" class="mb-4 text-gray-300"></div>
-                <button id="check-guess-button"
-                    class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Check
-                    Guess</button>
+                <button id="check-guess-button" class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Check Guess</button>
             </div>
 
             <div class="game-card bg-gray-800 rounded-lg shadow-md">
                 <h3>Letter Scramble Game</h3>
                 <p id="scrambled-word-text">Scramble the letters to form a word:</p>
                 <p id="scrambled-word" class="text-lg font-semibold text-purple-300 mb-4"></p>
-                <input type="text" id="word-guess-input" placeholder="Your guess"
-                    class="bg-gray-700 rounded-md border-gray-600 focus:ring-2 focus:ring-purple-500 w-3/4 max-w-sm mb-4">
+                <input type="text" id="word-guess-input" placeholder="Your guess" class="bg-gray-700 rounded-md border-gray-600 focus:ring-2 focus:ring-purple-500 w-3/4 max-w-sm mb-4">
                 <div id="word-guess-feedback" class="mb-4 text-gray-300"></div>
-                <button id="check-word-button"
-                    class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Check
-                    Answer</button>
+                <button id="check-word-button" class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Check Answer</button>
             </div>
         </div>
 
-        <div id="feedback"
-            class="mt-8 p-4 rounded-md bg-gray-800 text-gray-300 text-center border border-gray-600 shadow-md">
+        <div id="feedback" class="mt-8 p-4 rounded-md bg-gray-800 text-gray-300 text-center border border-gray-600 shadow-md">
             Thank you for using the Number & Letter & Language Translator and Games!
         </div>
     </div>
@@ -495,6 +397,4 @@
         });
     </script>
 </body>
-
 </html>
-
