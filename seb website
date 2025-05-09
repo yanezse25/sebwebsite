@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number & Language Translator + Games</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom CSS for the games */
+        body {
+            font-family: 'Press Start 2P', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #111827;
+            /* Dark background */
+            color: #f9fafb;
+            /* Light text */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 95%;
+            max-width: 1200px;
+            /* Increased max-width for larger screens */
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            font-size: 2.25rem;
+            /* Larger heading */
+            margin-bottom: 1.5rem;
+            color: #6366f1;
+            /* Vibrant purple */
+            text-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);
+            /* Deeper text shadow */
+        }
+
+        #translator-container {
+            background-color: #1f2937;
+            /* Darker container */
+            padding: 2rem;
+            /* Increased padding */
+            border-radius: 0.75rem;
+            /* More rounded corners */
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6), 0 8px 10px -6px rgba(0, 0, 0, 0.4);
+            /* Enhanced shadow */
+            margin-bottom: 2rem;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /* Center content within the container */
+            gap: 1.5rem;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            /* Align items to the start of the container */
+            margin-bottom: 0;
+            /* Removed default margin-bottom */
+            width: 100%;
+        }
+
+        .input-group label {
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #d1d5db;
+            font-size: 1rem;
+            /* Increased font size */
+        }
+
+        .input-group input,
+        .input-group textarea,
+        .input-group select {
+            /* Added select */
+            padding: 0.8rem;
+            /* Increased padding */
+            border-radius: 0.5rem;
+            /* More rounded corners */
+            border: 2px solid #4b5563;
+            /* Darker border */
+            background-color: #374151;
+            /* Slightly lighter input background */
+            color: #f9fafb;
+            font-size: 1rem;
+            /* Increased font size */
+            width: calc(100% - 2rem);
+            /* Adjusted width for padding and border */
+            max-width: 400px;
+            /* Added max-width for input fields */
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+            /* Inner shadow for depth */
+        }
+
+        .input-group input:focus,
+        .input-group textarea:focus,
+        .input-group select:focus {
+            /* Added select */
+            outline: none;
+            border-color: #6366f1;
+            /* Highlight on focus */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+            /* Added shadow on focus */
+        }
+
+        textarea {
+            resize: none;
+            height: 8rem;
+            /* Increased height for textarea */
+        }
+
+        #output {
+            padding: 1rem;
+            border-radius: 0.5rem;
+            background-color: #4b5563;
+            /* Darker output background */
+            color: #ffffff;
+            font-size: 1rem;
+            width: calc(100% - 2rem);
+            /* Adjusted width for padding */
+            margin-top: 1.5rem;
+            /* Increased margin-top */
+            border: 2px solid #6b7280;
+            /* Darker border */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+            /* Added shadow to output */
+            word-wrap: break-word;
+            white-space: pre-wrap;
+        }
+
+        #games-container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 2rem;
+            /* Increased margin-top */
+        }
+
+        #games-container h2 {
+            font-size: 2rem;
+            /* Increased heading size */
+            margin-bottom: 1.5rem;
+            /* Increased margin-bottom */
+            color: #6366f1;
+            text-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);
+            /* Deeper text shadow */
+            width: 100%;
+            text-align: center;
+            /* Center the heading */
+        }
+
+        .game-card {
+            background-color: #1f2937;
+            /* Darker game card background */
+            padding: 1.5rem;
+            /* Increased padding */
+            border-radius: 0.75rem;
+            /* More rounded corners */
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6), 0 8px 10px -6px rgba(0, 0, 0, 0.4);
+            /* Enhanced shadow */
+            margin-bottom: 1.5rem;
+            /* Increased margin-bottom */
+            width: 100%;
+            max-width: 400px;
+            /* Added max-width for game cards */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            /* Smooth transition */
+        }
+
+        .game-card:hover {
+            transform: translateY(-0.5rem) scale(1.02);
+            /* Slight lift and scale on hover */
+            box-shadow: 0 12px 30px -5px rgba(0, 0, 0, 0.7), 0 10px 12px -8px rgba(0, 0, 0, 0.5);
+            /* Increased shadow on hover */
+        }
+
+        .game-card h3 {
+            font-size: 1.25rem;
+            /* Increased heading size */
+            margin-bottom: 1rem;
+            color: #f9fafb;
+        }
+
+        .game-card p {
+            color: #d1d5db;
+            margin-bottom: 1rem;
+        }
+
+        .game-card button {
+            padding: 0.8rem 1.6rem;
+            /* Increased padding */
+            border-radius: 0.5rem;
+            /* More rounded corners */
+            background-color: #6366f1;
+            color: #f9fafb;
+            font-size: 1rem;
+            /* Increased font size */
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            /* Added box-shadow transition */
+            border: none;
+            box-shadow: 0 6px 10px -3px rgba(0, 0, 0, 0.5);
+            /* Add shadow */
+        }
+
+        .game-card button:hover {
+            background-color: #4c51bf;
+            /* Darker purple on hover */
+            transform: translateY(-0.25rem) scale(1.05);
+            /* Slight lift and scale on hover */
+            box-shadow: 0 8px 12px -3px rgba(0, 0, 0, 0.6);
+            /* Increased shadow on hover*/
+        }
+
+        .game-card button:active {
+            background-color: #4338ca;
+            /* Even darker purple on active */
+            transform: translateY(0);
+            box-shadow: 0 3px 4px rgba(0, 0, 0, 0.5);
+            /* Smaller shadow on active */
+        }
+
+        #feedback {
+            margin-top: 2rem;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            background-color: #1f2937;
+            color: #ffffff;
+            font-size: 1rem;
+            width: calc(100% - 2rem);
+            text-align: center;
+            border: 2px solid #6b7280;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+            }
+
+            #translator-container {
+                padding: 1.5rem;
+            }
+
+            .input-group input,
+            .input-group textarea {
+                width: calc(100% - 1.5rem);
+            }
+
+            #output {
+                width: calc(100% - 1.5rem);
+            }
+
+            .game-card {
+                padding: 1rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .input-group label {
+                font-size: 0.9rem;
+            }
+
+            .input-group input,
+            .input-group textarea,
+            .input-group select {
+                font-size: 0.9rem;
+                padding: 0.7rem;
+            }
+
+            #output {
+                font-size: 0.9rem;
+                padding: 0.7rem;
+            }
+
+            .game-card h3 {
+                font-size: 1.1rem;
+            }
+
+            .game-card p {
+                font-size: 0.85rem;
+            }
+
+            .game-card button {
+                font-size: 0.9rem;
+                padding: 0.7rem 1.4rem;
+            }
+
+            #games-container h2 {
+                font-size: 1.75rem;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gray-900 text-gray-50">
+    <div class="container">
+        <h1>Number & Language Translator</h1>
+
+        <div id="translator-container" class="bg-gray-800 rounded-lg shadow-md p-6">
+            <div class="input-group">
+                <label for="input">Enter number:</label>
+                <input type="text" id="input" placeholder="Enter number to translate..."
+                    class="bg-gray-700 rounded-md border-gray-600 focus:ring-2 focus:ring-purple-500">
+            </div>
+
+            <div class="input-group">
+                <label for="language">Select Target Language:</label>
+                <select id="language"
+                    class="bg-gray-700 rounded-md border-gray-600 focus:ring-2 focus:ring-purple-500">
+                    <option value="es">Spanish</option>
+                    <option value="fr">French</option>
+                    <option value="de">German</option>
+                    <option value="en">English</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label for="output">Translated Output:</label>
+                <div id="output" class="bg-gray-700 rounded-md border-gray-600"></div>
+            </div>
+
+            <div class="button-group flex justify-center gap-4 mt-6">
+                <button id="translate-button"
+                    class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Translate</button>
+                <button id="clear-button"
+                    class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Clear</button>
+            </div>
+        </div>
+
+        <div id="games-container" class="mt-8">
+            <h2 class="text-2xl font-semibold text-purple-500 mb-6">Fun Games to Play</h2>
+            <div class="game-card bg-gray-800 rounded-lg shadow-md">
+                <h3>Number Guessing Game</h3>
+                <p>Guess the number between 1 and 100:</p>
+                <input type="number" id="guess-input" placeholder="Your guess"
+                    class="bg-gray-700 rounded-md border-gray-600 focus:ring-2 focus:ring-purple-500 w-3/4 max-w-sm mb-4">
+                <div id="guess-feedback" class="mb-4 text-gray-300"></div>
+                <button id="check-guess-button"
+                    class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Check
+                    Guess</button>
+            </div>
+
+            <div class="game-card bg-gray-800 rounded-lg shadow-md">
+                <h3>Letter Scramble Game</h3>
+                <p id="scrambled-word-text">Scramble the letters to form a word:</p>
+                <p id="scrambled-word" class="text-lg font-semibold text-purple-300 mb-4"></p>
+                <input type="text" id="word-guess-input" placeholder="Your guess"
+                    class="bg-gray-700 rounded-md border-gray-600 focus:ring-2 focus:ring-purple-500 w-3/4 max-w-sm mb-4">
+                <div id="word-guess-feedback" class="mb-4 text-gray-300"></div>
+                <button id="check-word-button"
+                    class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Check
+                    Answer</button>
+            </div>
+        </div>
+
+        <div id="feedback"
+            class="mt-8 p-4 rounded-md bg-gray-800 text-gray-300 text-center border border-gray-600 shadow-md">
+            Thank you for using the Number & Letter & Language Translator and Games!
+        </div>
+    </div>
+
+    <script>
+        const inputElement = document.getElementById("input");
+        const outputElement = document.getElementById("output");
+        const translateButton = document.getElementById("translate-button");
+        const clearButton = document.getElementById("clear-button");
+        const languageSelect = document.getElementById("language"); // Get the language selector
+
+        const numberGuessInput = document.getElementById("guess-input");
+        const checkGuessButton = document.getElementById("check-guess-button");
+        const guessFeedback = document.getElementById("guess-feedback");
+
+        const scrambledWordText = document.getElementById("scrambled-word-text");
+        const scrambledWordDisplay = document.getElementById("scrambled-word");
+        const wordGuessInput = document.getElementById("word-guess-input");
+        const checkWordButton = document.getElementById("check-word-button");
+        const wordGuessFeedback = document.getElementById("word-guess-feedback");
+
+        // Use a simple translation object (for demonstration purposes)
+        const translations = {
+            en: {
+                1: "one", 2: "two", 3: "three", 4: "four", 5: "five",
+                6: "six", 7: "seven", 8: "eight", 9: "nine", 10: "ten"
+            },
+            es: {
+                1: "uno", 2: "dos", 3: "tres", 4: "cuatro", 5: "cinco",
+                6: "seis", 7: "siete", 8: "ocho", 9: "nueve", 10: "diez"
+            },
+            fr: {
+                1: "un", 2: "deux", 3: "trois", 4: "quatre", 5: "cinq",
+                6: "six", 7: "sept", 8: "huit", 9: "neuf", 10: "dix"
+            },
+            de: {
+                1: "eins", 2: "zwei", 3: "drei", 4: "vier", 5: "fünf",
+                6: "sechs", 7: "sieben", 8: "acht", 9: "neun", 10: "zehn"
+            }
+        };
+
+        function translateText(text, targetLanguage) {
+            const number = parseInt(text);
+            if (isNaN(number)) {
+                return "Invalid input. Please enter a number.";
+            }
+            if (number >= 1 && number <= 10) {
+                return translations[targetLanguage][number];
+            } else {
+                return "Number out of range (1-10).";
+            }
+        }
+
+        translateButton.addEventListener("click", () => {
+            const inputText = inputElement.value;
+            const targetLanguage = languageSelect.value; // Get selected language
+            const translatedText = translateText(inputText, targetLanguage);
+            outputElement.textContent = translatedText;
+        });
+
+        clearButton.addEventListener("click", () => {
+            inputElement.value = "";
+            outputElement.textContent = "";
+        });
+
+        // Number Guessing Game
+        let randomNumber = Math.floor(Math.random() * 100) + 1;
+        let guessCount = 0;
+
+        checkGuessButton.addEventListener("click", () => {
+            const guess = parseInt(numberGuessInput.value);
+            guessCount++;
+
+            if (guess === randomNumber) {
+                guessFeedback.textContent = `Congratulations! You guessed the number in ${guessCount} tries!`;
+                randomNumber = Math.floor(Math.random() * 100) + 1;
+                guessCount = 0;
+                numberGuessInput.value = "";
+            } else if (guess < randomNumber) {
+                guessFeedback.textContent = "Too low! Guess higher.";
+            } else {
+                guessFeedback.textContent = "Too high! Guess lower.";
+            }
+            numberGuessInput.value = "";
+            numberGuessInput.focus();
+        });
+
+        // Letter Scramble Game
+        const words = ["javascript", "programming", "algorithm", "computer", "keyboard", "developer", "coding", "software", "application", "frontend"];
+
+        function scrambleWord(word) {
+            const wordArray = word.split("");
+            for (let i = wordArray.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [wordArray[i], wordArray[j]] = [wordArray[j], wordArray[i]];
+            }
+            return wordArray.join("");
+        }
+
+        let wordToGuess = words[Math.floor(Math.random() * words.length)];
+        let scrambledWord = scrambleWord(wordToGuess);
+        scrambledWordDisplay.textContent = scrambledWord;
+
+        checkWordButton.addEventListener("click", () => {
+            const guess = wordGuessInput.value.toLowerCase();
+            if (guess === wordToGuess) {
+                wordGuessFeedback.textContent = "Correct! Well done!";
+                wordToGuess = words[Math.floor(Math.random() * words.length)];
+                scrambledWord = scrambleWord(wordToGuess);
+                scrambledWordDisplay.textContent = scrambledWord;
+                wordGuessInput.value = "";
+            } else {
+                wordGuessFeedback.textContent = "Incorrect! Try again.";
+                wordGuessInput.value = "";
+                wordGuessInput.focus();
+            }
+        });
+    </script>
+</body>
+
+</html>
